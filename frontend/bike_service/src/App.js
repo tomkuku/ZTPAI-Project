@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import SignUpPage from './SignUp';
+import LoginPage from './Login';
 
 const SignUp = () => {
   return (
@@ -11,10 +12,10 @@ const SignUp = () => {
   );
 };
 
-const About = () => {
+const Login = () => {
   return (
     <div>
-      <h2>About Page</h2>
+      <h2>Login</h2>
       {/* Zawartość strony About */}
     </div>
   );
@@ -41,7 +42,7 @@ function App() {
                 <Link to="/signup">Sign Up</Link>
               </li>
               <li>
-                <Link to="/about">About</Link>
+                <Link to="/login">Login</Link>
               </li>
               <li>
                 <Link to="/contact">Contact</Link>
@@ -52,7 +53,7 @@ function App() {
 
         <Routes>
           <Route path="/signup" element={<SignUpPage />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </div>

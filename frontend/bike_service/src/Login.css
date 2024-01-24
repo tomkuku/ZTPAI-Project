@@ -1,0 +1,84 @@
+body {
+  background: #004679;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: bold;
+  font-weight: 400;
+  font-size: 16px;
+  color: white;
+}
+
+.container {
+  padding: 16px;
+  max-width: 80%; /* Zmieniono na 80% */
+  margin: auto;
+}
+
+.label-container {
+  width: 100%;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  width: 80%; /* Dodano szerokość 80% */
+}
+
+input {
+  width: calc(100% - 20px); /* 100% szerokości minus margines */
+  padding: 12px;
+  margin-bottom: 8px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.login-button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 80%; /* Dodano szerokość 80% */
+  box-sizing: border-box;
+}
+
+.sign-up-button {
+  background-color: #F266AB;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 80%; /* Dodano szerokość 80% */
+  box-sizing: border-box;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.logo-container {
+  width: 100%;
+  text-align: center;
+}
+
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+  }
+
+  .cancelbtn {
+    width: 100%;
+  }
+}
