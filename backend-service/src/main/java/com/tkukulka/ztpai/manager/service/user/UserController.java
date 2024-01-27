@@ -8,7 +8,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
+@CrossOrigin(origins = "localhost:3000/signup")
 @RestController()
 @RequestMapping("v1/user")
 @RequiredArgsConstructor
@@ -34,5 +36,15 @@ class UserController {
     })
     UserDto getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
+    }
+
+    @GetMapping(path = "/getall")
+    @Operation(description = "Get all users")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "All users fetched successfully.",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = List.class)))
+    })
+    List<UserDto> getAllUsers() {
+        return userService.getAllUsers();
     }
 }

@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import './SignUp.css';
 import { Link, useNavigate } from 'react-router-dom';
-import bike from './Assets/bike.svg'
+import bike from './Assets/bike.svg';
 
 const SignUp = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    name: '',
-    surname: '',
     email: '',
     password: '',
-    repeatPassword: '',
-    userType: '1',
+    firstname: '',
+    lastname: '',
+    type: '1',
   });
 
   const handleInputChange = (e) => {
@@ -27,24 +26,31 @@ const SignUp = () => {
     e.preventDefault();
 
     // Przykładowa walidacja - sprawdzanie, czy hasło się powtarza
-    if (formData.password !== formData.repeatPassword) {
-      console.log('Passwords do not match');
-    } else {
+    // if (formData.password !== formData.repeatPassword) {
+    //   console.log('Passwords do not match');
+    // } else {
+      // Usunięcie pola repeatPassword z obiektu przed wysłaniem
+      const { repeatPassword, ...dataToSend } = formData;
+
       try {
-        console.log('preparing the user data: ', JSON.stringify(formData))
+        console.log('preparing the user data: ', JSON.stringify(dataToSend));
 
         // Wysyłanie danych do serwera przy użyciu funkcji fetch
-        const response = await fetch('http://localhost:8088/v1/servicerequest/create', {
+        const response = await fetch('http://localhost:8088/v1/user/create', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'Accept': 'application/json',
           },
-          body: JSON.stringify(formData),
+          body: JSON.stringify(dataToSend),
         });
+
+        // Tutaj będziesz musiał dostosować obsługę odpowiedzi w zależności od potrzeb
+        console.log(response);
 
         if (response.ok) {
           console.log('User created successfully');
-          
+
           // Przekierowanie do /login po pomyślnym utworzeniu użytkownika
           navigate('/login');
         } else {
@@ -53,7 +59,7 @@ const SignUp = () => {
       } catch (error) {
         console.error('Error:', error);
       }
-    }
+    // }
   };
 
   return (
@@ -71,23 +77,23 @@ const SignUp = () => {
 
       <div className="form-labels">
         <label className="input-container">
-          <b style={{ textAlign: 'left' }}>Name</b>
+          <b style={{ textAlign: 'left' }}>First Name</b>
           <input
             type="text"
-            placeholder="Name"
-            name="name"
-            value={formData.name}
+            placeholder="First Name"
+            name="firstname"
+            value={formData.firstname}
             onChange={handleInputChange}
           />
         </label>
 
         <label className="input-container">
-          <b style={{ textAlign: 'left' }}>Surname</b>
+          <b style={{ textAlign: 'left' }}>Last Name</b>
           <input
             type="text"
-            placeholder="Surname"
-            name="surname"
-            value={formData.surname}
+            placeholder="Last Name"
+            name="lastname"
+            value={formData.lastname}
             onChange={handleInputChange}
           />
         </label>
@@ -114,42 +120,13 @@ const SignUp = () => {
           />
         </label>
 
-        <label className="input-container">
-          <b style={{ textAlign: 'left' }}>Repeat Password</b>
-          <input
-            type="password"
-            placeholder="Repeat Password"
-            name="repeatPassword"
-            value={formData.repeatPassword}
-            onChange={handleInputChange}
-          />
-        </label>
-
-        {/* <label>
-          <b style={{ textAlign: 'left' }}>User Type</b>
-          <select
-            className="user-type"
-            name="userType"
-            id="userType"
-            value={formData.userType}
-            onChange={handleInputChange}
-          >
-            <option value="1">I'm user</option>
-            <option value="2">I'm bike mechanic</option>
-          </select>
-        </label> */}
-
-      {/* <div className="clearfix">
-        
-      </div> */}
-
-      <Link to="/login">
+        <Link to="/login">
           <button className="cancel-button" type="submit">
             Cancel
           </button>
         </Link>
 
-      <button type="submit" className="sign-up-button" onClick={handleSignUp}>
+        <button type="submit" className="sign-up-button" onClick={handleSignUp}>
           Sign Up
         </button>
       </div>

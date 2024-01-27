@@ -17,4 +17,12 @@ class UserCreateRequestDto {
     private final String email;
 
     private final Long type;
+
+    public UserCreateRequestDto() {
+        this.firstname = null;
+        this.lastname = null;
+        this.password = null;
+        this.email = null;
+        this.type = null;
+    }
 }
