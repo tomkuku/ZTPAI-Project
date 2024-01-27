@@ -32,6 +32,16 @@ class UserServiceImpl {
                 .collect(Collectors.toList());
     }
 
+    UserDto getUserByEmail(String email) {
+        UserEntity userEntity = findEntityByEmailOrThrowException(email);
+        return UserDto.from(userEntity);
+    }
+
+    private UserEntity findEntityByEmailOrThrowException(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new NotFoundException("User with email=%s not found".formatted(email)));
+    }
+
     private UserEntity findEntityByIdOrThrowException(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("User with id=%s not found".formatted(id)));
