@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
-import bike from './Assets/bike.svg';
+import bike from '../Assets/bike.svg';
 
 const LoginPage = () => {
   const navigate = useNavigate();
