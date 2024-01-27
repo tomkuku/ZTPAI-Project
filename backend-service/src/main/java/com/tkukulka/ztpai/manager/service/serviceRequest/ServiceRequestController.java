@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController()
 @RequestMapping("v1/servicerequest")
 @RequiredArgsConstructor
@@ -34,5 +36,15 @@ public class ServiceRequestController {
     })
     ServiceRequestDto getServiceRequestById(@PathVariable Long id) {
         return serviceRequestService.getServiceRequestById(id);
+    }
+
+    @GetMapping(path = "/getall")
+    @Operation(description = "Get all service requests")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "All service requests fetched successfully.",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = List.class)))
+    })
+    List<ServiceRequestDto> getAllServiceRequests() {
+        return serviceRequestService.getAllServiceRequests();
     }
 }

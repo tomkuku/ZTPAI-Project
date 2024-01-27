@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
@@ -24,5 +25,10 @@ public class ServiceRequestServiceImpl {
     private ServiceRequestEntity findEntityByIdOrThrowException(Long id) {
         return serviceRequestRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("ServiceRequest with id=%s not found".formatted(id)));
+    }
+
+    List<ServiceRequestDto> getAllServiceRequests() {
+        List<ServiceRequestEntity> allServiceRequests = serviceRequestRepository.findAll();
+        return ServiceRequestDto.fromList(allServiceRequests);
     }
 }

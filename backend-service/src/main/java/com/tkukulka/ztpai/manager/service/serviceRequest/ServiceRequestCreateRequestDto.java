@@ -24,4 +24,11 @@ public class ServiceRequestCreateRequestDto {
 //    private String fileName;
 
     private final Long ownerId;
+
+    public ServiceRequestCreateRequestDto() {
+        this.bikeName = null;
+        this.description = null;
+        this.price = null;
+        this.ownerId = null;
+    }
 }

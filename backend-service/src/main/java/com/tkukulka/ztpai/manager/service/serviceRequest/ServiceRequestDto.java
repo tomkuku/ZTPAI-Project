@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
@@ -26,5 +28,11 @@ public class ServiceRequestDto {
 
     static ServiceRequestDto from(ServiceRequestEntity entity) {
         return ServiceRequestMapper.INSTANCE.toServiceRequestDto(entity);
+    }
+
+    static List<ServiceRequestDto> fromList(List<ServiceRequestEntity> entities) {
+        return entities.stream()
+                .map(ServiceRequestDto::from)
+                .collect(Collectors.toList());
     }
 }
