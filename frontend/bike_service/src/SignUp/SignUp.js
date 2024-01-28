@@ -25,11 +25,6 @@ const SignUp = () => {
   const handleSignUp = async (e) => {
     e.preventDefault();
 
-    // Przykładowa walidacja - sprawdzanie, czy hasło się powtarza
-    // if (formData.password !== formData.repeatPassword) {
-    //   console.log('Passwords do not match');
-    // } else {
-      // Usunięcie pola repeatPassword z obiektu przed wysłaniem
       const { repeatPassword, ...dataToSend } = formData;
 
       try {

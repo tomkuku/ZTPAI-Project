@@ -45,30 +45,10 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <header className="App-header">
-          {/* Reszta kodu nagłówka */}
-          <nav>
-            <ul>
-              <li>
-                <Link to="/signup">Sign Up</Link>
-              </li>
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-              <li>
-                <Link to="/contact">Reuests</Link>
-              </li>
-              <li>
-                <Link to="/addrequest">Add reuest</Link>
-              </li>
-            </ul>
-          </nav>
-        </header>
-
         <Routes>
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/reuests" element={<RequestsPage />} />
+          <Route path="/requests" element={<RequestsPage />} />
           <Route path="/addrequest" element={<AddRequestPage />} />
         </Routes>
       </div>

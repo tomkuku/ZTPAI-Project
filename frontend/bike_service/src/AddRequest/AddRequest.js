@@ -9,6 +9,8 @@ const AddRequestPage = () => {
     price: '',
   });
 
+  const userId = localStorage.getItem('userId'); // Pobierz ID użytkownika z local storage
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -25,7 +27,7 @@ const AddRequestPage = () => {
       bikeName: formData.bikename,
       description: formData.description,
       price: formData.price,
-      ownerId: 1,
+      ownerId: userId, // Ustaw ID użytkownika pobrane z local storage
     };
 
     try {
@@ -36,6 +38,8 @@ const AddRequestPage = () => {
         },
         body: JSON.stringify(requestData),
       });
+
+      console.log('preparing the user data: ', JSON.stringify(requestData));
 
       if (response.ok) {
         console.log('Request sent successfully');

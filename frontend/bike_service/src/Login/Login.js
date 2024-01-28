@@ -21,8 +21,10 @@ const LoginPage = () => {
         const user = await response.json();
 
         if (user.password === password) {
-          setError('OK');
+          localStorage.setItem('userId', user.id);
+
           console.log("Passwords match!")
+          navigate('/requests');
         } else {
           setError('Niepoprawne hasło!');
         }
